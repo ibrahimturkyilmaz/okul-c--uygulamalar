@@ -1,2 +1,2 @@
 # okul-c--uygulamalar
-Okulda almış olduğum nesne tabanlı programlama c++ dersinin uygulamaları
+Okulda almış olduğum nesne tabanlı programlama cplusplus dersinin uygulamaları
