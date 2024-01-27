@@ -1,0 +1,80 @@
+1. #include <iostream>
+2. class Ogrenci {
+3. public:
+4. Ogrenci() {
+5. // Default kurucu - Öğrenci adı ve notlarını varsayılan değerlerle başlatır
+6. ad = "Bilinmiyor";
+7. for (int i = 0; i < 5; i++) {
+8. notlar[i] = 0;
+9. }
+10. }
+11. Ogrenci(std::string ad, int notlar[5]) {
+12. // Özel kurucu - Öğrenci adını ve notlarını belirli değerlerle başlatır
+13. this->ad = ad;
+14. for (int i = 0; i < 5; i++) {
+15. this->notlar[i] = notlar[i];
+16. }
+17. }
+18. void BilgileriGoster() {
+19. std::cout << "Öğrenci Adı: " << ad << std::endl;
+20. std::cout << "Notlar: ";
+21. for (int i = 0; i < 5; i++) {
+22. std::cout << notlar[i] << " ";
+23. }
+24. std::cout << std::endl;
+25. }
+26. private:
+27. std::string ad;
+28. int notlar[5];
+29. };
+30. int main() {
+31. Ogrenci ogrenci1; // Default kurucu kullanılır
+32. ogrenci1.BilgileriGoster();
+33. int notlar[5] = {90, 85, 78, 92, 88};
+34. Ogrenci ogrenci2("Ahmet", notlar); // Özel kurucu kullanılır
+35. ogrenci2.BilgileriGoster();
+36. return 0;
+37. }
+--------------------------------------------------
+1. #include <iostream>
+2. #include <string>
+3. class Ucak {
+4. public:
+5. Ucak() {
+6. // Default kurucu - Uçak bilgilerini varsayılan değerlerle başlatır
+7. marka = "Bilinmiyor";
+8. model = "Bilinmiyor";
+9. maksimumHiz = 0;
+10. yolcuKapasitesi = 0;
+11. motorSayisi = 0;
+12. }
+13. Ucak(std::string marka, std::string model, int maksimumHiz, int yolcuKapasitesi,
+int motorSayisi) {
+14. // Özel kurucu - Uçak bilgilerini belirli değerlerle başlatır
+15. this->marka = marka;
+16. this->model = model;
+17. this->maksimumHiz = maksimumHiz;
+18. this->yolcuKapasitesi = yolcuKapasitesi;
+19. this->motorSayisi = motorSayisi;
+20. }
+21. void BilgileriGoster() {
+22. std::cout << "Uçak Markası: " << marka << std::endl;
+24. std::cout << "Uçak Modeli: " << model << std::endl;
+25. std::cout << "Maksimum Hız: " << maksimumHiz << " km/saat" << std::endl;
+26. std::cout << "Yolcu Kapasitesi: " << yolcuKapasitesi << " kişi" << std::endl;
+27. std::cout << "Motor Sayısı: " << motorSayisi << std::endl;
+28. }
+29. private:
+30. std::string marka;
+31. std::string model;
+32. int maksimumHiz;
+33. int yolcuKapasitesi;
+34. int motorSayisi;
+35. };
+36. int main() {
+37. Ucak ucak1; // Default kurucu kullanılır
+38. ucak1.BilgileriGoster();
+39. Ucak ucak2("Boeing", "747", 987, 416, 4); // Özel kurucu kullanılır
+40. ucak2.BilgileriGoster();
+41. return 0;
+42. }
