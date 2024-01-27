@@ -1,0 +1,137 @@
+ int faktoriyel(int x) {
+ if (x > 1) {
+ return x * faktoriyel(x - 1);
+ }
+ }
+
+ int main() {
+ cout << faktoriyel(5);
+ }
+--------------------------------------------------
+1. #include <stdio.h>
+2. int faktoriyel(int);
+3. int main() {
+4. int sayi = 4;
+5. int sonuc = faktoriyel(sayi);
+6. printf("%d! = %d\n", sayi, sonuc);
+7. return 0;
+8. }
+9. int faktoriyel(int x) {
+10. if (x <= 1)
+11. return 1;
+12. return x * faktoriyel(x - 1);
+13. }
+---------------------------------------------------
+1. #include <stdio.h>
+2. int obeb(int, int);
+3. int okek(int, int);
+4. int main() {
+5. int sayi1 = 180;
+6. int sayi2 = 48;
+7. int sonuc = okek(sayi1, sayi2);
+8. printf("okek(%d,%d) = %d\n", sayi1, sayi2, sonuc);
+9. return 0;
+10.
+}
+
+11. int obeb(int x, int y) {
+12. if (y == 0)
+13. return x;
+14. return obeb(y, x % y);
+15.
+}
+16. int okek(int x, int y) {
+17. return x * y / obeb(x, y);
+18.
+}
+---------------------------------------------------
+1. #include <stdio.h>
+2. int usAlma(int, int);
+3. int main() {
+4. int taban = 7;
+5. int us = 3;
+6. int sonuc;
+7. sonuc = usAlma(taban, us);
+8. printf("(%d)^%d = %d\n", taban, us, sonuc);
+9. return 0;
+10.}
+11.int usAlma(int taban, int us) {
+12. if (us == 0)
+13. return 1;
+14. return taban * usAlma(taban, us - 1);
+15.}
+---------------------------------------------------
+1. // Karmasik sayilar icin fonksiyon asiri yuklemesi
+2. #include <iostream>
+3. using std::cout;
+4. using std::endl;
+5. class KarmasikSayi {// KarmasikSayi Sınıfının Tanımı
+6. public:
+7. KarmasikSayi() = default;// Varsayılan oluşturucu (boş gövde)
+8. KarmasikSayi(double, double);// Gerçek ve Sanal kısımları başlatmak için iki
+parametreli yapıcı
+9. bool operator>(const KarmasikSayi&) const;// Fonksiyon aşırı yükleme yöntemi >
+10. bool is_greater(const KarmasikSayi&) const;// Karmasik sayılarını karşılaştırma
+yöntemi (fonksiyon > ile aynı işlev, gereksiz)
+11. void print() const;// Gerçek ve Sanal bölümlerini yazdırma
+12. double m_re{}, m_im{ 1 };// Gerçek ve Sanal kısımları başlatıldı
+13. };
+14. // ***** Üye İşlevlerinin Organları *****
+15. // Gerçek ve Sanal kısımları başlatmak için iki parametreli yapıcı
+16. KarmasikSayi::KarmasikSayi(double in_re, double in_im) : m_re{ in_re }, m_im{ in_im }
+17. {}
+18. bool KarmasikSayi::operator>(const KarmasikSayi& in_number) const //
+Fonksiyon aşırı yükleme yöntemi >
+19. {
+20. cout << "operator > is called" << endl;
+21. return (m_re * m_re + m_im * m_im) > (in_number.m_re * in_number.m_re +
+in_number.m_im * in_number.m_im); // Bunları karşılaştırmak için sqrt
+gerekli değildir
+22. /* Bu daha uzun versiyondur
+23. if ( (m_re * m_re + m_im * m_im) > (in_number.m_re * in_number.m_re +
+in_number.m_im * in_number.m_im) ) return true;
+24. else return false;
+25. */
+26. }
+27. // Karmasik sayılarını karşılaştırma yöntemi (artık gereksiz)
+28. bool KarmasikSayi::is_greater(const KarmasikSayi& in_number) const
+29. {
+30. return (m_re * m_re + m_im * m_im) > (in_number.m_re * in_number.m_re +
+in_number.m_im * in_number.m_im); // To compare them sqrt is not
+necessary
+31. /* Daha uzun versiyon
+32. if ( (m_re * m_re + m_im * m_im) > (in_number.m_re * in_number.m_re +
+in_number.m_im * in_number.m_im) ) return true;
+33. else return false;
+34. */
+35. }
+36. // Karmaşık sayıyı ekrana yazdırmak için sabit bir yöntem
+37. void KarmasikSayi::print() const {
+38. cout << "Gercek = " << m_re << endl;
+39. cout << "Sanal = " << m_im << endl;
+40. }
+41.// -------- Ana Program -------------
+42.int main()
+43.{
+44.KarmasikSayi karmasik1{ 1.1, 2.3 };
+45.KarmasikSayi karmasik2{ 2.5, 3.7 };
+46.if (karmasik1 > karmasik2) cout << "karmasik1 karmasik2'den daha büyüktür"
+<< endl;
+47.else cout << " karmasik1 karmasik2'den daha büyük değildir" << endl;
+48.// ----- Karmasik sayılarına bir işaretleyici kullanma
+49.KarmasikSayi* ptrkarmasik;// Karmasik sayılarının işaretçisi
+50.if (karmasik1 > karmasik2) ptrkarmasik = &karmasik1;// işaretçi karmasik1'i
+işaret ediyor
+51.else ptrkarmasik = &karmasik2;// işaretçi karmasik2'yi işaret ediyor
+52.ptrkarmasik->print();// Daha büyük boyutlu sayıyı yazdırır
+53.KarmasikSayi karmasik3{ 4, 5 };
+54.if (karmasik3 > *ptrkarmasik) ptrkarmasik = &karmasik3;// Karmasik3'ün
+boyutu, işaretçinin işaret ettiği sayının boyutundan daha mı büyük?
+55.ptrkarmasik->print();
+56.// Fonksiyon yerine > büyüktür fonksiyonunu kullanabiliriz. Hangisini
+anlamak daha kolay?
+57.if (karmasik1.is_greater(karmasik2)) cout << "karmasik1 karmasik2'den
+daha büyük" << endl;
+58.else cout << "karmasik1 karmasik2'den daha büyük değildir" << endl;
+59.return 0;
+60.}
