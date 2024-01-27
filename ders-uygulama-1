@@ -1,0 +1,40 @@
+# C++ Uygulamalar 
+1. #include <iostream>
+
+2. // Sinif tanimi
+3. class Araba
+4. {
+5. public:
+6. // Sinifin uye degiskenleri (properties)
+7. std::string marka;
+8. std::string model;
+9. int yil;
+10. // Sinifin yapici metodu (constructor)
+11. Araba(std::string m, std::string mdl, int y)
+12. {
+13. marka = m;
+14. model = mdl;
+15. yil = y;
+16. }
+
+17. // Sinifin fonksiyonu (method)
+18. void BilgileriGoster()
+19. {
+	20. std::cout << "Araba Markasi: " << marka << std::endl;
+21. std::cout << "Araba Modeli: " << model << std::endl;
+22. std::cout << “Uretim Yili: " << yil << std::endl;
+23. }
+24.};
+
+25.int main()
+26.{
+	27. // Araba sinifindan iki nesne olusturuyoruz
+28. Araba araba1("Toyota", "Corolla", 2022);
+29. Araba araba2("Honda", "Civic", 2021);
+30. // Nesnelerin bilgilerini goruntuluyoruz
+31. std::cout << "Araba 1 Bilgileri:\n";
+32. araba1.BilgileriGoster();
+33. std::cout << "\nAraba 2 Bilgileri:\n";
+34. araba2.BilgileriGoster();
+35. return 0;
+36. }
